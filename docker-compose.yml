@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    ports:
+      - "1453:1453"
+    depends_on:
+      - db
+      - ioc_crawler
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ioc_datas_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  ioc_crawler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+
+volumes:
+  pgdata:

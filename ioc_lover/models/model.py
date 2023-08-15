@@ -9,6 +9,9 @@ import enum
 Base = declarative_base()
 
 class IocType(enum.Enum):
+    """
+    Enumeration class representing different types of IoCs (Indicators of Compromise).
+    """
     MALICIOUS_CONTROL = "malicious_control"  
     VT = "vt"                    
     WHOIS = "whois"                        
@@ -20,7 +23,7 @@ class IocType(enum.Enum):
 
 class IocModel(Base):
     """
-    IocModel.
+    Database model for IoC data.
 
     Args:
         Base: Database base.
@@ -39,10 +42,10 @@ class IocModel(Base):
 
 async def create_tables():
     """
-    create_tables.
+    Create database tables.
 
     Args:
-        Base: Database base. & create database tables
+        Base: Database base.
     """
     conn = await engine.begin()
     try:

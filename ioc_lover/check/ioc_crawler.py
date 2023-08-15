@@ -16,13 +16,13 @@ from typing import Any
 
 async def analyze_ioc(ioc_value: str) -> dict[str, Any]:
     """
-    Analyze ioc.
+    Analyze the provided IOC value.
 
     Args:
-        ioc_value: Value of IOC.
+        ioc_value: Value of the IOC.
     
     Returns:
-        IOC types and IOC values. 
+        A dictionary containing IOC types and their corresponding values. 
     """
     await create_tables()
 
@@ -39,7 +39,6 @@ async def analyze_ioc(ioc_value: str) -> dict[str, Any]:
     results = dict(zip(ioctype, results))
 
     log.info(f"Starting analysis: {ioc_value}")
-
 
     async with AsyncSessionLocal() as db:
         try:
